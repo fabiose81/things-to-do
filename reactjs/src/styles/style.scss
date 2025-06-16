@@ -1,0 +1,80 @@
+@use '../styles/_variables' as vars;
+
+.prompt-control {
+    text-align: center;
+    border: 1px solid vars.$color;
+    padding: 1rem;
+    margin: 1rem auto;
+    width: 30rem;
+    max-width: 80%;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    background: vars.$color !important;
+}
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25vh;
+}
+
+.list-group-item {
+    border: 1px solid vars.$color;
+}
+
+input[type=checkbox]:checked{
+    background-color: vars.$color !important;
+}
+
+.button-calendar {
+    background-color: vars.$colorTransparent;
+    border: none;
+}
+
+.button-calendar:hover {
+    background-color: vars.$colorTransparent;
+}
+
+.fading-bars {
+    display: flex;
+    justify-content: space-between;
+    width: 80px;
+}
+
+.bar {
+    width: 10px;
+    height: 40px;
+    background-color: vars.$color;
+    animation: fade 1s infinite;
+}
+
+.bar:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.bar:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.bar:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.bar:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+.bar:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+@keyframes fade {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
