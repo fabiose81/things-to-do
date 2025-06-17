@@ -35,6 +35,20 @@ input[type=checkbox]:checked {
   background-color: transparent;
 }
 
+.grid-date-checkbox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 180px;
+}
+
+.box1 {
+  text-align: center;
+}
+
+.box2 {
+  grid-column: span 2;
+}
+
 .fading-bars {
   display: flex;
   justify-content: space-between;

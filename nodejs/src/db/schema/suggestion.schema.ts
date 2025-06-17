@@ -13,6 +13,10 @@ const SuggestionSchema = new Schema({
         age: {
             type: String,
             required: true
+        },
+        date: {
+            type: Date,
+            required: false
         }    
 })
 

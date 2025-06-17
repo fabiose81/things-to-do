@@ -1,13 +1,12 @@
 import { Constants } from '../../utils/Constants'
 
-export const BodyRequest = (suggestionsSelected, action) => {
+export const BodyRequest = (param, action) => {
 
     var query;
-
     switch (action) {
         case Constants.INSERT: {
-            query = `mutation InsertSuggestion($suggestions: [SuggestionInput]) {
-                    insertSuggestion(suggestions: $suggestions),{
+            query = `mutation InsertSuggestion($suggestion: [SuggestionInput]) {
+                    insertSuggestion(suggestion: $suggestion), {
                         success,
                         name,
                         error
@@ -17,15 +16,26 @@ export const BodyRequest = (suggestionsSelected, action) => {
             break;
         }
         case Constants.DELETE: {
-            query = `mutation DeleteSuggestion($suggestions: [SuggestionInput]) {
-                deleteSuggestion(suggestions: $suggestions),{
+            query = `mutation DeleteSuggestion($suggestion: [SuggestionInput]) {
+                deleteSuggestion(suggestion: $suggestion), {
                     success,
                     _id,
                     error
                 }
             }`;
 
-            break
+            break;
+        }
+        case Constants.SCHEDULE: {
+            query = `mutation ScheduleSuggestion($suggestion: SuggestionInput) {
+                scheduleSuggestion(suggestion: $suggestion), {
+                    success,
+                    name,
+                    date,
+                    error
+                }
+            }`;
+            break;
         }
         default: {
             query = `query { 
@@ -33,7 +43,8 @@ export const BodyRequest = (suggestionsSelected, action) => {
                    _id,
                    name,
                    description,
-                   age
+                   age,
+                   date
                 }
             }`;
         }
@@ -42,7 +53,7 @@ export const BodyRequest = (suggestionsSelected, action) => {
     return JSON.stringify({
         query,
         variables: {
-            suggestions: suggestionsSelected
+            suggestion: param
         }
     })
 }

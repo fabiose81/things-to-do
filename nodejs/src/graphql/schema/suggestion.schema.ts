@@ -1,11 +1,14 @@
 import { buildSchema } from "graphql"
 
 const schema = buildSchema(`
+                scalar Date
+
                 type Suggestion {
                     _id: ID!
                     name: String!
                     description: String!
                     age: String!
+                    date: Date
                 }
 
                 input SuggestionInput {
@@ -13,6 +16,7 @@ const schema = buildSchema(`
                     name: String!
                     description: String!
                     age: String!
+                    date: Date
                 }
                     
                 type InsetItemPayload {
@@ -27,13 +31,21 @@ const schema = buildSchema(`
                     error: String
                 }
 
+                type UpdateItemPayload {
+                    success: Boolean!
+                    name: String
+                    date: Date
+                    error: String
+                }
+
                 type RootQuery {
                     suggestions: [Suggestion!]!
                 }
 
                 type RootMutation {
-                    insertSuggestion(suggestions: [SuggestionInput]): [InsetItemPayload]
-                    deleteSuggestion(suggestions: [SuggestionInput]): [DeleteItemPayload]
+                    insertSuggestion(suggestion: [SuggestionInput]): [InsetItemPayload]
+                    deleteSuggestion(suggestion: [SuggestionInput]): [DeleteItemPayload]
+                    scheduleSuggestion(suggestion: SuggestionInput): UpdateItemPayload
                 }
 
                 schema {

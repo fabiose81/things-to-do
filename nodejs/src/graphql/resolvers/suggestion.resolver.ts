@@ -1,7 +1,7 @@
 import SuggestionModel from '../../db/model/suggestion.model.js';
 
 const resolver = {
-    suggestions: () => {
+    suggestions() {
         return SuggestionModel.find()
             .then(suggestions => {
                 return suggestions.map(suggestion => {
@@ -14,7 +14,7 @@ const resolver = {
     },
     insertSuggestion: args => {
         const results = [];
-        args.suggestions.forEach(e => {
+        args.suggestion.forEach(e => {
             const suggestion = new SuggestionModel({
                 name: e.name,
                 description: e.description,
@@ -27,23 +27,43 @@ const resolver = {
                     return parse(true, null, res.name);
                 })
                 .catch(err => {
-                    return parse(false, err, suggestion.name);
+                    return parse(false, err, e.name);
                 }));
         });
         return results;
     },
     deleteSuggestion: args => {
         const results = [];
-        args.suggestions.forEach(suggestion => {
-            results.push(SuggestionModel.findByIdAndDelete(suggestion._id)
-                .then(res => {
-                    return parse(true, null, suggestion.name);
+        args.suggestion.forEach(s => {
+            results.push(SuggestionModel.findByIdAndDelete(s._id)
+                .then(() => {
+                    return parse(true, null, s.name);
                 })
                 .catch(err => {
-                    return parse(false, err, suggestion._id);
+                    return parse(false, err, s._id);
                 }));
         });
         return results;
+    },
+    scheduleSuggestion: args => {
+        const suggestion = args.suggestion;   
+        return SuggestionModel.findByIdAndUpdate(suggestion._id, suggestion)
+            .then(() => {
+                return {
+                    success: true,
+                    name: suggestion.name,
+                    date: suggestion.date,
+                    error: null
+                }
+            })
+            .catch(err => {
+                return {
+                    success: false,
+                    name: suggestion.name,
+                    date: suggestion.date,
+                    error: err
+                }
+            })
     }
 }
 

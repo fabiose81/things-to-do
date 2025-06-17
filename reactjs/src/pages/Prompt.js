@@ -16,7 +16,7 @@ const Prompt = () => {
 
     const [showModal, setShowModal] = useState(false);
     const [disableButton, setDisableButton] = useState(true);
-   
+
     const [suggestions, setSuggestions] = useState([]);
     const [suggestionsSelected, setSuggestionsSelected] = useState([]);
 
@@ -96,12 +96,12 @@ const Prompt = () => {
                         <Alert variant={alert.variant} hidden={alert.hidden}>
                             {alert.label}
                         </Alert>
-                        <ListComponent suggestions={suggestions} 
-                                       suggestionsSelected={suggestionsSelected} 
-                                       disableButton={disableButton} 
-                                       setDisableButton={setDisableButton} 
-                                       actionSuggestion={actionSuggestion} 
-                                       actionLabel={Constants.INSERT}/>
+                        <ListComponent suggestions={suggestions}
+                            suggestionsSelected={suggestionsSelected}
+                            disableButton={disableButton}
+                            setDisableButton={setDisableButton}
+                            actionSuggestion={actionSuggestion}
+                            actionLabel={Constants.INSERT} />
                     </div> : <div>
                         <Alert variant={Constants.ALERT_INFO}>
                             {Constants.MESSAGE_NO_SUGGESTION_AVAILABLE}

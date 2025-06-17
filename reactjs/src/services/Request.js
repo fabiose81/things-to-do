@@ -13,7 +13,7 @@ export function Request(param, method, body) {
         })
             .then(response => {
                 if (response.status !== 200) {
-                    throw new Error('Failed!');
+                    reject('Failed!');
                 }
                 return response.json();
             })

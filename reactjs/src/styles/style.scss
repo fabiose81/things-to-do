@@ -24,7 +24,7 @@ input[type="range"]::-webkit-slider-thumb {
     border: 1px solid vars.$color;
 }
 
-input[type=checkbox]:checked{
+input[type=checkbox]:checked {
     background-color: vars.$color !important;
 }
 
@@ -35,6 +35,20 @@ input[type=checkbox]:checked{
 
 .button-calendar:hover {
     background-color: vars.$colorTransparent;
+}
+
+.grid-date-checkbox {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 180px;
+}
+
+.box1 {
+    text-align: center;
+}
+
+.box2 {
+    grid-column: span 2;
 }
 
 .fading-bars {
@@ -71,9 +85,12 @@ input[type=checkbox]:checked{
 }
 
 @keyframes fade {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 0;
     }
+
     50% {
         opacity: 1;
     }

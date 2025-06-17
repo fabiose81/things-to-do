@@ -17,12 +17,12 @@ route(app);
 
 const dbConfig = new DbConfig();
 dbConfig.connect()
-.then(() => {
-    app.listen(PORT, () => {  
-        const gragphqlClient = new GragphqlClient(app);
-        gragphqlClient.start();
+    .then(() => {
+        app.listen(PORT, () => {
+            const gragphqlClient = new GragphqlClient(app);
+            gragphqlClient.start();
 
-        return console.log(`Express is listening at http://localhost:${PORT}`);
-     });
+            return console.log(`Express is listening at http://localhost:${PORT}`);
+        });
 
-}).catch(error => console.error(error));
+    }).catch(error => console.error(error));
