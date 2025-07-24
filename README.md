@@ -26,6 +26,31 @@ https://github.com/user-attachments/assets/9f7f0408-20c6-45ec-806d-6efb34369423
     Ex: [nodejs]
         aws_access_key_id = {your key id}
         aws_secret_access_key = {your access key}
+
+### Lambda code for AWS Serveless(NodeJS)
+    
+    import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+    import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
+
+    const client = new DynamoDBClient({});
+    const dynamodb = DynamoDBDocumentClient.from(client);
+
+    export const handler = async (event, context) => {
+        try {
+            console.log('Received action event:', event.action);
+            await dynamodb.send(
+                new PutCommand({
+                    TableName: "track",
+                    Item: {
+                        action: event.action,
+                    },
+                })
+            );
+        } catch (err) {
+            console.error('Error recording action into DynamoDB:', err);
+            context.done('error');
+        }
+    };
     
 ### For Docker(MongoDB)
     docker compose -f docker-compose.yml up -d --build
