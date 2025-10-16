@@ -1,3 +1,12 @@
+# Bucket list ideas and track the user actions on cloud
+
+  ⚙️ : Node.js(TypeScript)
+  💻 : React(JavaScript)
+  🕸️ : GraphQL
+  🧠 : API OpenAI
+  ☁️ : AWS(Lambda / DynamoDB)
+  🧩 : Gulp
+
 https://github.com/user-attachments/assets/38ed5817-4aa5-42af-821d-424486be256b
 
 https://github.com/user-attachments/assets/9f7f0408-20c6-45ec-806d-6efb34369423
